@@ -43,6 +43,7 @@ class EmployesController extends Controller
     public function store(Request $request)
     {       
           $this->validate($request,[
+
                 "fullname"=>"required|unique:employes,fullname",
                 "resgistration_number"=> "required|numeric|unique:employes,resgistration_number",
                 "depart"=>"required",
@@ -183,12 +184,15 @@ class EmployesController extends Controller
     {
         //
         $employe = Employe::find($id);
+
         $employe->delete();
+
         session()->flash('message','Employe deleted Successfully!');
 
         return redirect()->route('employes.index');
     }
     public function WorkCertificate($id){
+
             $employe = Employe::find($id);
 
             return view("employes.WorkCertificate")->with([
@@ -196,9 +200,11 @@ class EmployesController extends Controller
             ]);
     }
     public function VacationRequest($id){
+        
         $employe = Employe::find($id);
 
         return view("employes.VacationRequest")->with([
+
             "employe" => $employe
         ]);
     }
