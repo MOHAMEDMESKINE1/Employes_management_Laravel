@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Employe;
+use App\Charts\UserChart;
 use Illuminate\Http\Request;
+use App\Charts\MonthlyUsersChart;
+use Illuminate\Support\Facades\DB;
 
 class EmployesController extends Controller
 {
@@ -32,6 +37,10 @@ class EmployesController extends Controller
     {
         //
         return view('employes.create');
+    }
+    public function statistiques(MonthlyUsersChart $chart)
+    {
+        return view('employes.statistiques', ['chart' => $chart->build()]);
     }
 
     /**
@@ -208,4 +217,8 @@ class EmployesController extends Controller
             "employe" => $employe
         ]);
     }
+    //  public function ChartEmployes()
+    // {
+        
+    // }
 }

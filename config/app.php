@@ -178,6 +178,9 @@ return [
         App\Providers\FortifyServiceProvider::class,
         //______adding FortifyServiceProvider___________ 
         App\Providers\FortifyServiceProvider::class,
+
+        // chart
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
     ],
 
     /*

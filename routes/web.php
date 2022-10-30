@@ -12,28 +12,32 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::view('/', 'welcome');
+Route::view('/', 'welcome' );
 
-Route::prefix('admin')
+Route::get('admin/employes/statistiques', [EmployesController::class , 'statistiques' ])->name('employes.statistiques')->middleware(['auth']);
+Route::resource("admin/employes","EmployesController")->middleware('auth');
+
+Route::prefix('admin/employes')
+->name('employes.')
 ->middleware('auth')
 ->group(function(){
 
     Route::view('/home','home');
-    Route::resource("employes","EmployesController");
-    Route::get("employes/{id}",[EmployesController::class,'show'])->name("employes.show");
-    Route::post("employes",[EmployesController::class,'store'])->name("employes.store");
-    Route::get("employes/edit/{id}",[EmployesController::class,'edit'])->name("employes.edit");
-    Route::put("employes/update/{id}",[EmployesController::class,'update'])->name("employes.update");
-    Route::delete("employes/{id}",[EmployesController::class,'destroy'])->name("employes.destroy");
+ 
+    Route::get("/{id}", [EmployesController::class,'show' ])->name("show");
+    Route::post("/", [EmployesController::class,'store' ])->name("store");
+    Route::get("edit/{id}", [EmployesController::class,'edit' ])->name("edit");
+    Route::put("/update/{id}", [EmployesController::class,'update' ])->name("update");
+    Route::delete("/{id}", [EmployesController::class,'destroy' ])->name("destroy");
 
 });
 
 // certification
-Route::prefix("admin")
+Route::prefix("admin/employes")
 ->middleware("auth")
 ->group(function(){
         //work and vacation certificate
-        Route::get("employes/{id}/work_certifcate}",[EmployesController::class,'WorkCertificate'])->name("certificate.request");
-        Route::get("employes/{id}/vacation_request",[EmployesController::class,'VacationRequest'])->name("vacation.request");   
+        Route::get("/{id}/work_certifcate}", [EmployesController::class,'WorkCertificate'])->name("certificate.request");
+        Route::get("/{id}/vacation_request", [EmployesController::class,'VacationRequest'])->name("vacation.request");   
     
 });

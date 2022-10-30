@@ -321,8 +321,9 @@ return [
                     'icon'  => 'fas fa-fw  fa-user-plus',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
+                    'text'    => 'Statistiques',
+                    'url'     => 'admin/employes/statistiques',
+                    'icon'    => 'fas  fa-chart-bar  '
                     // 'submenu' => [
                     //     // [
                     //     //     'text' => 'level_two',
